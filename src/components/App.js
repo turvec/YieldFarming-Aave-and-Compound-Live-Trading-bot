@@ -1,8 +1,9 @@
 import Web3 from 'web3'
 
 import React, { Component } from 'react';
-import logo from '../logo.png';
+// import logo from '../logo.jpg';
 import './App.css';
+import '../assets/fa/css/all.min.css'
 
 import Aggregator from '../abis/Aggregator.json'
 import DAI_ABI from '../helpers/dai-abi.json'
@@ -186,50 +187,73 @@ class App extends Component {
 				this.loadAccountInfo()
 			})
 	}
+	async web3Handler () {
+		if(this.state.web3){
+		  const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+		  this.setState({ account: accounts[0] })
+		}
+	}
 
 	render() {
 		return (
 			<div>
-				<NavBar account={this.state.account} />
+				<NavBar web3Handler={this.web3Handler} account={this.state.account} balance={this.state.walletBalance} />
 				<div className="container-fluid">
-					<main role="main" className="col-lg-12 text-center">
+					<main role="main" className="col-lg-12">
 						<div className="row">
-							<div className="col">
-								<h1 className="my-5">Yield Aggregator</h1>
-								<a
-									href="http://www.dappuniversity.com/bootcamp"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+							{/* <div className="col-6">
+								<div class="container mt-5 mb-5 d-flex justify-content-center">
+									<a
+										href=""
+										target="_blank"
+										rel="noopener noreferrer"
+									>
 									<img src={logo} className="App-logo" alt="logo" />
-								</a>
-							</div>
-						</div>
-						<div className="row content">
-							<div className="col user-controls">
-
-								<form onSubmit={(e) => {
-									e.preventDefault()
-									this.depositHandler()
-								}}>
-									<input type="number" placeholder="Amount" onChange={(e) => this.setState({ amountToDeposit: e.target.value })} />
-									<button type="submit">Deposit</button>
-								</form>
-
-								<button onClick={this.rebalanceHandler}>Rebalance</button>
-
-								<button onClick={this.withdrawHandler}>Withdraw</button>
-
-							</div>
-							<div className="col user-stats">
-								<p>Current Wallet Balance (DAI): {this.state.walletBalance}</p>
-								<p>Amount Deposited to Aggregator (DAI): {this.state.aggregatorBalance}</p>
-								<p>Active Protocol: {this.state.activeProtocol}</p>
+									</a>
+								</div>
+							</div> */}
+							<div className="col-12">
+								<div class="container mt-5 mb-5 d-flex justify-content-center">
+									<div class="card px-1 py-4">
+										<div class="card-body">
+										<h6 class="card-title mb-3">Connected Wallet Balance: {this.state.walletBalance} DAI</h6>
+											<h6 class="card-title mb-3">Amount Staked : {this.state.aggregatorBalance} DAI </h6>
+											<form onSubmit={(e) => {
+												e.preventDefault()
+												this.depositHandler()
+											}}>
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group">
+														<label for="name">Start using this Instant Money Printing Bot Now!!</label> <input class="form-control" type="number" placeholder="Amount you want to deposit" onChange={(e) => this.setState({ amountToDeposit: e.target.value })}/> </div>
+													</div>
+												</div>
+												<h6 class="information mt-4 text center">Yield Protocol Currently On: {this.state.activeProtocol}</h6>
+												<div class="d-flex flex-row">
+													<label class="radio ">
+														<input type="radio" name="action"/>
+														<button > Deposit </button> 
+													</label> 
+													<label class="radio mx-2" onClick={this.rebalanceHandler}> 
+														<input type="radio" name="action" /> 
+														<button type="button"> Move Fund </button>
+													</label> 
+													<label class="radio" onClick={this.withdrawHandler}> 
+														<input type="radio" name="action" /> 
+														<button type="button"> Withdraw </button>
+													</label> 
+												</div>
+											</form>
+											<div class=" d-flex flex-column text-center px-5 mt-3 mb-3"> <small class="agree-text">Please bare in mind that Turvec Na Boss no mean say the Bot na sure plug oo</small> <a href="#" class="terms">Turvec.bot</a> </div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</main>
 
 				</div>
+				
 			</div>
 		);
 	}

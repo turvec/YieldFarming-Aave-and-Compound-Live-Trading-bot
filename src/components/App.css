@@ -1,69 +1,71 @@
-/* Styles go here */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik:wght@400;700&display=swap');
-
-:root {
-    --clr-dark: #212529;
-    --clr-light: #D2F5FF;
-}
-
-html {
-    font-family: "Rubik" !important;
-    font-weight: 400;
-}
-
 body {
-    background: var(--clr-light);
-
-    min-height: 100vh;
-
-    font-family: "Rubik";
+    background-color: #0b0a0a
 }
 
-main {
-    min-height: 100vh;
-    margin-top: 5vh;
+.card {
+    width: 400px;
+    background-color: rgb(16, 222, 30);
+    border: none;
+    border-radius: 12px
 }
 
-.content {
-    justify-content: center;
+label.radio {
+    cursor: pointer;
+    width: 100%
 }
 
-.user-controls, .user-stats {
-    display: grid;
-    place-content: center;
-    justify-content: center;
-
-    max-width: 400px;
-    padding: 2.5em;
+label.radio input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none
 }
 
-form {
-    margin: 2em;
+label.radio button {
+    padding: 7px 14px;
+    border: 2px solid #eee;
+    background-color: rgb(16, 222, 30);
+    display: inline-block;
+    color: #fcfcfc;
+    border-radius: 10px;
+    width: 100%;
+    height: 48px;
+    line-height: 27px
 }
 
-button {
-    min-width: 150px;
-
-    margin: .5em auto;
-    padding: 1em 2em;
-
-    background: var(--clr-dark);
-    color: var(--clr-light);
-
-    border: 3px solid var(--clr-dark);
-    border-radius: .5em;
-
-    font-weight: 700 !important;
-
-    transition: all 250ms ease;
+label.radio input:checked+button {
+    border-color: #f5f9f6;
+    background-color: #031005;
+    color: #fff;
+    border-radius: 9px;
+    height: 48px;
+    line-height: 27px
 }
 
-input[type="number"] {
-    margin: .5em auto;
-    padding: 1em 2em;
+.form-control {
+    margin-top: 10px;
+    height: 48px;
+    border: 2px solid #eee;
+    border-radius: 10px
 }
 
-button:hover {
-    background: var(--clr-light);
-    color: var(--clr-dark);
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid #000000
+}
+
+.agree-text {
+    font-size: 12px
+}
+
+.terms {
+    font-size: 12px;
+    text-decoration: none;
+    color: #e9e9e9
+}
+
+.confirm-button {
+    height: 50px;
+    border-radius: 10px
 }
